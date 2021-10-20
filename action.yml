@@ -1,0 +1,25 @@
+name: 'Deploy to Server'
+description: 'Deploy artifacts to a server using Pterodactyl v1 panel, deleting the old one'
+inputs:
+  apiUrl:
+    description: 'The Pterodactyl server api url (without a trailing /). Example: "https://pterodactyl.app/api"'
+    required: true
+  apiKey:
+    description: 'The Pterodactyl server api key'
+    required: true
+  serverId:
+    description: 'The id of the server to use'
+    required: true
+  uploadPath:
+    description: 'The path where to upload the artifact'
+    required: true
+    default: '/'
+  artifact:
+    description: 'A glob pattern for the artifact to upload'
+    required: true
+  oldArtifact:
+    description: 'A regex to match the old artifacts that will be deleted. Defaults to the artifact name'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
